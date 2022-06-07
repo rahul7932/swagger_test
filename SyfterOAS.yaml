@@ -6,7 +6,7 @@ info:
 
 externalDocs:
   description: Syfter
-  url: https://localhost/
+  url: ''
 
 servers:
   - url: https://localhost/api
