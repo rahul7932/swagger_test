@@ -8,6 +8,7 @@ externalDocs:
   description: Syfter
   url: ''
 
+
 servers:
   - url: https://localhost/api
   
@@ -57,7 +58,6 @@ paths:
           description: Success
           content:
             application/json:
-              schema:
               examples:
                 Sample Output 1:
                   value:
@@ -221,5 +221,3 @@ paths:
           description: Success
         400:
           description: Incorrect input      
-
-
