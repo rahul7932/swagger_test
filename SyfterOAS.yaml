@@ -1,0 +1,225 @@
+openapi: 3.0.3
+
+info:
+  title: Syfter API  Documentation
+  version: '1.0'
+
+externalDocs:
+  description: Syfter
+  url: https://localhost/
+
+servers:
+  - url: https://localhost/api
+  
+tags:
+  - name: Nuggets
+    description: Endpoints related to nuggets
+  - name: Reports
+    description: Endpoints related to reports
+  - name: Devices
+    description: Endpoints related to devices and their configurations
+  - name: Daemon
+    description: Endpoints related to Daemon configuration
+  - name: Syfter Configurations
+    description: Endpoints related to Syfter configurations
+   
+paths:
+  /nugget_list/{device_type}:
+    summary: Operations about Courses
+    get:
+      tags: 
+        - Nuggets
+      summary: List all nuggets available for a given device type
+      parameters:
+        - in: path
+          name: device_type
+          required: true
+          schema:
+            type: string
+            example: Meraki
+          description: The device type
+        - in: query
+          name: tags
+          required: false
+          schema:
+            type: string
+            example: compliance,rule
+          description: The tags to filter nuggets by
+        - in: query
+          name: data_type
+          required: false
+          schema:
+            type: string
+            example: json
+          description: The data types to filter nuggets by
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+              examples:
+                Sample Output 1:
+                  value:
+                    report_name: test
+                    datastores:
+                      - local
+                    description: test report
+                    device_types:
+                      - Cisco
+                      - CiscoAPIC
+                    devices:
+                      - localhost
+                    global_nuggets:
+                      - ap_name_d
+                    nuggets:
+                      - bashrc
+                    type: nugget
+  /nugget_poll/{device_type}/{nugget}:
+    summary: Operations about Courses
+    get:
+      tags: 
+        - Nuggets
+      summary: Poll a nugget value on-demand using REST  
+      parameters:
+        - in: path
+          name: device_type
+          required: true
+          schema:
+            type: string
+            example: Meraki
+          description: The device type
+        - in: path
+          name: nugget
+          required: true
+          schema:
+            type: string
+            example: bashrc
+          description: The nugget to poll
+      responses: 
+        200:
+          description: Success
+        400:
+          description: Incorrect input
+          
+  /report_list:
+    summary: List all available reports
+    get:
+      tags: 
+        - Reports
+      summary: List all reports available
+      parameters:
+        - in: query
+          name: datastores
+          required: false
+          schema:
+            type: string
+            example: local
+          description: The datastores to filter reports by
+        - in: query
+          name: device_type
+          required: false
+          schema:
+            type: string
+            example: CiscoAPIC
+          description: The data types to filter reports by
+        - in: query
+          name: devices
+          required: false
+          schema:
+            type: string
+            example: localhost
+          description: The devices to filter reports by
+        - in: query
+          name: global_nuggets
+          required: false
+          schema:
+            type: string
+            example: ap_name_d
+          description: The global nuggets to filter reports by
+        - in: query
+          name: nuggets
+          required: false
+          schema:
+            type: string
+            example: bashrc
+          description: The nuggets to filter reports by
+        - in: query
+          name: type
+          required: false
+          schema:
+            type: string
+            example: nugget
+          description: The type of report to filter reports by
+      responses: 
+        200:
+          description: Success
+        400:
+          description: Incorrect input
+          
+  /control/{action}/{daemon}:
+    post:
+      tags: 
+        - Daemon
+      summary: Start, stop, restart, or kill various Syfter daemons
+      parameters:
+        - in: path
+          name: action
+          required: true
+          schema:
+            type: string
+            enum: [start, stop, restart, kill]
+          description: The action to take on a Syfter daemon
+        - in: path
+          name: daemon
+          required: true
+          schema:
+            type: string
+            enum: [daphne, db, gunicorn, monitor, netflow, poller, snmptrap]
+          description: The daemon to take action on
+      responses: 
+        200:
+          description: Success
+        400:
+          description: Incorrect input
+  /control/device_list:
+    get:
+      tags: 
+        - Devices
+      summary:   Retrieve Syfter's device list
+      responses: 
+        200:
+          description: Success
+        400:
+          description: Incorrect input
+          
+  /control/config/{config}:
+    post:
+      tags: 
+        - Devices
+      summary:   Get or set config files
+      parameters:
+        - in: path
+          name: config
+          required: true
+          schema:
+            type: string
+            example: tool
+      responses: 
+        200:
+          description: Success
+        400:
+          description: Incorrect input    
+          
+  /control/health_status:
+    get:
+      tags: 
+        - Syfter Configurations
+      summary:   Get data related to the health of the Syfter system
+      responses: 
+        200:
+          description: Success
+        400:
+          description: Incorrect input      
+
+
