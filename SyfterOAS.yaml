@@ -1,13 +1,12 @@
 openapi: 3.0.3
 
 info:
-  title: Syfter API  Documentation
+  title: Cisco Syfter API  Documentation
   version: '1.0'
 
 externalDocs:
   description: Syfter
-  url: ''
-
+  url: https://localhost/api
 
 servers:
   - url: https://localhost/api
@@ -58,6 +57,7 @@ paths:
           description: Success
           content:
             application/json:
+              schema:
               examples:
                 Sample Output 1:
                   value:
@@ -221,3 +221,5 @@ paths:
           description: Success
         400:
           description: Incorrect input      
+
+
