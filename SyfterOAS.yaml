@@ -222,7 +222,7 @@ paths:
         400:
           description: Incorrect input  
           
-  /config/{device_name}:
+  /config_get/{device_name}:
     get:
       tags: 
         - Devices
@@ -233,7 +233,7 @@ paths:
         400:
           description: Incorrect input 
           
-  /config/{device_name}:
+  /config_post/{device_name}:
     post:
       tags: 
         - Devices
@@ -244,7 +244,7 @@ paths:
         400:
           description: Incorrect input 
           
-  /config/{device_name}:
+  /config_patch/{device_name}:
     patch:
       tags: 
         - Devices
@@ -255,7 +255,7 @@ paths:
         400:
           description: Incorrect input 
           
-  /config/{device_name}:
+  /config_delete/{device_name}:
     delete:
       tags: 
         - Devices
