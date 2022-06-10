@@ -2,7 +2,7 @@ openapi: 3.0.3
 
 info:
   title: Cisco Syfter API  Documentation
-  version: '1.0'
+  version: '3.3.2'
 
 externalDocs:
   description: Syfter
