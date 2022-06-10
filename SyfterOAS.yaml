@@ -6,7 +6,7 @@ info:
 
 externalDocs:
   description: Syfter
-  url: https://localhost/api
+  url: https://localhost/
 
 servers:
   - url: https://localhost/api
@@ -220,6 +220,49 @@ paths:
         200:
           description: Success
         400:
-          description: Incorrect input      
-
+          description: Incorrect input  
+          
+  /config/{device_name}:
+    get:
+      tags: 
+        - Devices
+      summary:   Retrieve the configuration of the inputted device
+      responses: 
+        200:
+          description: Success
+        400:
+          description: Incorrect input 
+          
+  /config/{device_name}:
+    post:
+      tags: 
+        - Devices
+      summary:   Create a new device or completley overwrite an existing device's configurations
+      responses: 
+        201:
+          description: New device succesfully created
+        400:
+          description: Incorrect input 
+          
+  /config/{device_name}:
+    patch:
+      tags: 
+        - Devices
+      summary:   Update an existing device's configurations
+      responses: 
+        200:
+          description: The device's configuration was succesfully updated
+        400:
+          description: Incorrect input 
+          
+  /config/{device_name}:
+    delete:
+      tags: 
+        - Devices
+      summary:   Delete an existing device
+      responses: 
+        200:
+          description: The device was succesfully deleted
+        400:
+          description: Incorrect input 
 
